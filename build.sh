@@ -1,0 +1,1 @@
+../bin-Win32/verifytga "parking.xml"
