@@ -13,12 +13,17 @@ E<> entrance.Opened && exit.Opened
 /*
 
 */
-E<> Car(0).EnterRequest && Car(1).Entering && Car(2).Entered
+E<> Car(0).EnterRequest && Car(1).Working
 
 /*
 
 */
-E<> Car(0).ExitRequest && Car(1).Exiting && Car(2).Exited
+E<> Car(0).ExitRequest && Car(1).Working
+
+/*
+
+*/
+//NO_QUERY
 
 /*
 Safety
