@@ -54,7 +54,7 @@ A[] exists (i:car_t) Car(i).Exiting imply exit.Opened
 /*
 
 */
-//NO_QUERY
+control: A[] money < 900
 
 /*
 control: A[] exit.Opened imply exitIn.Activated
