@@ -3,7 +3,7 @@
 /*
 Reachable
 */
-E<> Car(0).Parked && Car(1).Parked
+E<> Car(0).Working && Car(1).Working
 
 /*
 
