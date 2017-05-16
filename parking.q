@@ -59,7 +59,12 @@ A[] exists (i:car_t) Car(i).Exiting imply exit.Opened
 /*
 
 */
-control: A[] money < 900
+E<> (exists (i:car_t) Car(i).ExitRequest)
+
+/*
+
+*/
+control: A[] (not exists (i:car_t) Car(i).t_starve > T_STARVE)
 
 /*
 control: A[] exit.Opened imply exitIn.Activated

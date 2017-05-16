@@ -1,1 +1,1 @@
-..\bin-Win32\verifytga -t0 -c1 "parking.xml" > output.txt
+../bin-Win32/verifytga "parking.xml"
