@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
+
+const int PERSONS = 2;
+const int PERSONEXPENSES = PERSONS;
+typedef int[0, PERSONS-1] person_t;
+
+int[0,2] empty_posts = 2;
+
+const int work = 0;
+//const int WORK[3] = {2,20,30};
+const int GAIN[3] = {10, 10, 10};
+const int MONEY_MAX = 15;
+int[0,MONEY_MAX+1] money = 15;
+int[0,MONEY_MAX+1] wallet[PERSONS] = {10,10};
+const int MONEY_CRITICAL = 3;
+const int SALARY = 3;
+
+const int COMPANY_EXPENSE = 1;
+const int PERSON_EXPENSE = 1;
+
+
+const int COUNTER_MAX = 2;
+int[0,3] counter = 0;
+
+void addMoney() {
+	int temp = money;
+	temp += GAIN[work];
+	if (temp &lt;= MONEY_MAX) {
+		money=temp;
+	} else {
+		money=MONEY_MAX;
+	}
+}
+
+void payEmployee(int[0, PERSONS-1] id) {
+	// Give money to the employee
+	int temp = wallet[id];
+	temp += SALARY;
+	if (temp &lt;= MONEY_MAX) {
+		wallet[id]=temp;
+	} else {
+		wallet[id]=MONEY_MAX;
+	}
+	// Remove money from the company
+	temp = money;
+	temp -= SALARY;
+	if (temp &gt; 0) {
+		money=temp;
+	} else {
+		money=0;
+	}
+}
+void companyLooseMoney() {
+	// Remove money from the company
+	int temp = money;
+	temp -= COMPANY_EXPENSE;
+	if (temp &gt; 0) {
+		money=temp;
+	} else {
+		money=0;
+	}
+}
+
+void personLooseMoney(int[0, PERSONS-1] id ) {
+	int temp = wallet[id];
+	temp -= PERSON_EXPENSE;
+	if (temp &gt; 0) {
+		wallet[id]=temp;
+	} else {
+		wallet[id]=0;
+	}
+}</declaration><template><name x="5" y="5">Person</name><parameter>person_t id</parameter><declaration>// Place local declarations here.
+clock t;
+clock t_task;
+clock t_travel;
+clock t_working;
+const int ALARM = 7;
+const int T_IDLE_MAX = 3;
+const int T_WORKING = 3;
+const int T_TRAVEL_MAX = 2;
+const int T_TRAVEL_MIN = 1;
+const int T_BREAK_MAX = 1;
+const int T_WORK_MAX = 12;
+const int T_WORK_CRITICAL = 7;</declaration><location id="id0" x="744" y="-296"><name x="720" y="-336">Burnout</name></location><location id="id1" x="744" y="-136"><name x="704" y="-168">Break</name><label kind="invariant" x="760" y="-160">t_task&lt;=T_BREAK_MAX</label></location><location id="id2" x="744" y="16"><name x="720" y="32">Working</name><label kind="invariant" x="720" y="48">t_task&lt;=T_WORKING</label></location><location id="id3" x="-256" y="152"><name x="-272" y="184">Sleeping</name><label kind="invariant" x="-266" y="167">t&lt;=ALARM</label></location><location id="id4" x="392" y="16"><name x="400" y="-16">WantToWork</name></location><location id="id5" x="136" y="-136"><name x="112" y="-168">OnTheRoad</name><label kind="invariant" x="80" y="-192">t_travel&lt;=T_TRAVEL_MAX</label></location><location id="id6" x="-256" y="8"><name x="-304" y="-24">Home</name><label kind="invariant" x="-240" y="16">t&lt;=T_IDLE_MAX</label></location><init ref="id6"/><transition><source ref="id0"/><target ref="id0"/><nail x="816" y="-264"/><nail x="816" y="-296"/></transition><transition><source ref="id1"/><target ref="id0"/><label kind="guard" x="760" y="-232">t_working&gt;=T_WORK_MAX</label></transition><transition><source ref="id1"/><target ref="id2"/><label kind="guard" x="912" y="-48">t_working&lt;=T_WORK_CRITICAL</label><label kind="assignment" x="912" y="-24">t_task=0</label><nail x="904" y="-136"/><nail x="904" y="16"/></transition><transition><source ref="id1"/><target ref="id5"/><label kind="guard" x="528" y="-136">t_working&lt;T_WORK_MAX &amp;&amp;
+money&gt;MONEY_CRITICAL</label><label kind="assignment" x="528" y="-176">empty_posts+=1,
+t_travel=0</label></transition><transition><source ref="id2"/><target ref="id1"/><label kind="guard" x="664" y="-96">t_task==T_WORKING</label><label kind="assignment" x="752" y="-72">payEmployee(id),
+addMoney(),
+t_task=0</label></transition><transition><source ref="id5"/><target ref="id6"/><label kind="guard" x="-80" y="-160">t_travel&gt;=T_TRAVEL_MIN</label><label kind="assignment" x="-80" y="-128">t=0</label><nail x="-256" y="-136"/></transition><transition><source ref="id4"/><target ref="id5"/><label kind="assignment" x="400" y="-40">t_travel=0</label><nail x="392" y="-136"/></transition><transition><source ref="id4"/><target ref="id2"/><label kind="guard" x="568" y="16">empty_posts&gt;0</label><label kind="assignment" x="568" y="32">empty_posts-=1,
+t_task=0</label></transition><transition><source ref="id3"/><target ref="id6"/><label kind="assignment" x="-408" y="72">t_working=0,
+t=0</label><nail x="-320" y="88"/><nail x="-320" y="48"/></transition><transition><source ref="id6"/><target ref="id3"/><label kind="guard" x="-248" y="88">money&gt;MONEY_CRITICAL</label><label kind="assignment" x="-248" y="72">t=0</label></transition><transition><source ref="id5"/><target ref="id4"/><label kind="guard" x="176" y="16">t_travel&gt;=T_TRAVEL_MIN &amp;&amp;
+t_working&lt;T_WORK_CRITICAL</label><nail x="192" y="16"/></transition><transition><source ref="id6"/><target ref="id5"/><label kind="guard" x="-96" y="16">t_working&lt;T_WORK_CRITICAL</label><label kind="assignment" x="-16" y="-24">t_travel=0</label><nail x="72" y="8"/></transition></template><template><name>CompanyExpenses</name><declaration>clock s;
+const int T_EXPENSE = 5;</declaration><location id="id7" x="8" y="0"><label kind="invariant" x="-10" y="15">s&lt;=T_EXPENSE</label></location><init ref="id7"/><transition><source ref="id7"/><target ref="id7"/><label kind="guard" x="-52" y="-30">s==T_EXPENSE</label><label kind="assignment" x="-40" y="-104">s=0,
+companyLooseMoney()</label><nail x="-56" y="-64"/><nail x="48" y="-64"/></transition></template><template><name>PersonExpenses</name><parameter>person_t id</parameter><declaration>clock s;
+const int T_EXPENSE = 5;</declaration><location id="id8" x="-144" y="8"><label kind="invariant" x="-152" y="16">s&lt;=T_EXPENSE</label></location><init ref="id8"/><transition><source ref="id8"/><target ref="id8"/><label kind="guard" x="-204" y="-22">s==T_EXPENSE</label><label kind="assignment" x="-232" y="-56">s=0,
+personLooseMoney(id)</label><nail x="-144" y="-64"/><nail x="-72" y="-64"/></transition></template><system>// Place template instantiations here.
+
+system Person, CompanyExpenses, PersonExpenses;</system></nta>
