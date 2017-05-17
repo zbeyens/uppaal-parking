@@ -3,12 +3,12 @@
 /*
 
 */
-A[] not forall (i:person_t)  Person(i).Burnout
+A[] forall(i:car_t) not Car(i).Burnout
 
 /*
 
 */
-A[] (money > 0)
+A[] money > 0
 
 /*
 
