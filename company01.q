@@ -1,6 +1,16 @@
 //This file was generated from (Academic) UPPAAL 4.1.4 (rev. 5535), March 2014
 
 /*
+control: A[ (not exists (i:car_t) Car(i).Burnout) and Company.Working U money==10]
+*/
+//NO_QUERY
+
+/*
+control: A[] (not exists (i:car_t) Car(i).Burnout) and Company.Working and rework==false
+*/
+//NO_QUERY
+
+/*
 
 */
 control: A[] (not exists (i:car_t) Car(i).Burnout) and Company.Working

@@ -1,1 +1,1 @@
-../bin-Win32/verifytga -t0 -c "company02.xml" > output.txt
+../bin-Win32/verifytga -t0 -c "company01.xml" > output.txt
