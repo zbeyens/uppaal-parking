@@ -64,7 +64,7 @@ E<> (exists (i:car_t) Car(i).ExitRequest)
 /*
 
 */
-control: A[] (not exists (i:car_t) Car(i).t_starve > T_STARVE)
+ A<> (not exists (i:car_t) Car(i).Burnout)
 
 /*
 control: A[] exit.Opened imply exitIn.Activated
