@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
 
+clock now;
 const int CARS = 2;
 typedef int[0, CARS-1] car_t;
 
@@ -7,8 +8,8 @@ typedef int[0, CARS-1] car_t;
 const int T_WORK_CRITICAL = 3;
 const int T_WORK = 1;
 const int GAIN = 1;
-const int MONEY_MAX = 3;
-int[0,MONEY_MAX] money = 3;
+const int MONEY_MAX = 10;
+int[0,MONEY_MAX] money = 2;
 
 const int T_PATH = 1;
 const int T_SLEEP = 3;
@@ -19,6 +20,10 @@ const int T_IDLE_MAX = 1;
 //const int T_HOLIDAY=2;
 const int SALARY=1;
 bool rework = false;
+
+bool LBudget = false;
+bool MBudget = false;
+bool HBudget = false;
 
 //bool working[2] = {false,false};
 
@@ -79,6 +84,6 @@ counter+=1,
 t_work=0</label></transition></template><template><name>CarSalary</name><parameter>car_t id</parameter><declaration>clock s;</declaration><location id="id6" x="-344" y="-88" color="#00ffff"><name x="-328" y="-96">Salary</name><label kind="invariant" x="-344" y="-80">s&lt;=T_SALARY</label></location><init ref="id6"/><transition controllable="false"><source ref="id6"/><target ref="id6"/><label kind="guard" x="-464" y="-16">s==T_SALARY &amp;&amp;
 burnout[id]==true</label><label kind="assignment" x="-464" y="16">s=0</label><nail x="-472" y="-88"/><nail x="-408" y="-24"/></transition><transition controllable="false"><source ref="id6"/><target ref="id6"/><label kind="guard" x="-376" y="-232">s==T_SALARY &amp;&amp;
 burnout[id]==false</label><label kind="assignment" x="-376" y="-200">s=0,
-giveMoney()</label><nail x="-408" y="-160"/><nail x="-272" y="-160"/></transition></template><template><name>Company</name><location id="id7" x="104" y="-24" color="#ff0000"><name x="88" y="-16">Bankrupt</name></location><location id="id8" x="-112" y="-24" color="#ffa500"><name x="-136" y="-8">Working</name></location><init ref="id8"/><transition controllable="false"><source ref="id7"/><target ref="id7"/><nail x="200" y="-96"/><nail x="200" y="56"/></transition><transition controllable="false"><source ref="id8"/><target ref="id7"/><label kind="guard" x="-40" y="-24">money==0</label></transition></template><system>// Place template instantiations here.
+giveMoney()</label><nail x="-408" y="-160"/><nail x="-272" y="-160"/></transition></template><template><name>Company</name><location id="id7" x="-240" y="88"><name x="-250" y="58">High</name><urgent/></location><location id="id8" x="-240" y="-24"><name x="-272" y="-56">Medium</name><urgent/></location><location id="id9" x="-240" y="-128"><name x="-250" y="-158">Low</name><urgent/></location><location id="id10" x="-416" y="-24"><name x="-480" y="-32">Startup</name><urgent/></location><location id="id11" x="104" y="-24" color="#ff0000"><name x="88" y="-16">Bankrupt</name></location><location id="id12" x="-112" y="-24" color="#ffa500"><name x="-104" y="-48">Working</name></location><init ref="id10"/><transition><source ref="id7"/><target ref="id12"/><label kind="assignment" x="-200" y="88">money=5</label><nail x="-112" y="88"/></transition><transition><source ref="id10"/><target ref="id7"/><label kind="assignment" x="-384" y="64">HBudget=true</label><nail x="-416" y="88"/></transition><transition><source ref="id8"/><target ref="id12"/><label kind="assignment" x="-200" y="-24">money=3</label></transition><transition><source ref="id10"/><target ref="id8"/><label kind="assignment" x="-388" y="-24">MBudget=true</label></transition><transition><source ref="id9"/><target ref="id12"/><label kind="assignment" x="-200" y="-128">money=1</label><nail x="-112" y="-128"/></transition><transition><source ref="id10"/><target ref="id9"/><label kind="assignment" x="-384" y="-152">LBudget=true</label><nail x="-416" y="-128"/></transition><transition controllable="false"><source ref="id11"/><target ref="id11"/><nail x="200" y="-96"/><nail x="200" y="56"/></transition><transition controllable="false"><source ref="id12"/><target ref="id11"/><label kind="guard" x="-40" y="-24">money==0</label></transition></template><system>// Place template instantiations here.
 // List one or more processes to be composed into a system.
 system Car, CarSalary, Company;</system></nta>
