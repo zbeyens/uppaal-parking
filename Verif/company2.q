@@ -3,11 +3,6 @@
 /*
 
 */
-A[] LBudget==true imply not exists (i:car_t)  Person(i).Burnout
-
-/*
-
-*/
 E[] not exists(i:car_t) Person(i).Burnout
 
 /*
@@ -33,12 +28,32 @@ A[] wallet > 0
 /*
 Person(0) ne travaille jamais
 */
-E[] not Person(0).Working
+A[] not (Person(0).Working && Person(1).Working)
 
 /*
 
 */
-E<> now > 5 
+E[] not rework && not exists(i:car_t) Person(i).Burnout
+
+/*
+
+*/
+E<> rework && not exists(i:car_t) Person(i).Burnout
+
+/*
+
+*/
+E<> wallet == MONEY_MAX
+
+/*
+
+*/
+E<> now > 50 imply money < MONEY_MAX
+
+/*
+
+*/
+E<> LBudget && now < 20 && money == MONEY_MAX
 
 /*
 
