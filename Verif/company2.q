@@ -26,9 +26,14 @@ A[] not Company.Bankrupt
 A[] wallet > 0
 
 /*
-Person(0) ne travaille jamais
+
 */
-A[] not (Person(0).Working && Person(1).Working)
+A[] (Person(0).Working && Person(1).Working)  imply counter_max>=2
+
+/*
+
+*/
+A[] Company.Small imply not (Person(0).Working && Person(1).Working) 
 
 /*
 
@@ -63,22 +68,32 @@ E[] money < MONEY_MAX
 /*
 
 */
-E<> LBudget && now < 20 && money == MONEY_MAX
+E<> LBudget && now < 13 && money == MONEY_MAX
 
 /*
 
 */
-E<> LBudget && now < 10 && money == MONEY_MAX
+E<> LBudget && now < 12 && money == MONEY_MAX
 
 /*
 
 */
-E<> MBudget && now < 15 && money == MONEY_MAX
+E<> MBudget && now < 5 && money == MONEY_MAX
 
 /*
 
 */
-E<> HBudget && now < 35 && money == MONEY_MAX
+E<> MBudget && now < 4 && money == MONEY_MAX
+
+/*
+
+*/
+E<> HBudget && now < 3 && money == MONEY_MAX
+
+/*
+
+*/
+E<> HBudget && now < 2 && money == MONEY_MAX
 
 /*
 
@@ -94,11 +109,6 @@ A<> (Person(0).Working or Person(1).Working)
 
 */
 A[] Person(0).Chomage imply counter==counter_max
-
-/*
-
-*/
-E<> now < 37 && money == MONEY_MAX
 
 /*
 
