@@ -3,27 +3,42 @@
 /*
 
 */
-A[] LBudget==true imply not exists (i:car_t)  Car(i).Burnout
+A[] LBudget==true imply not exists (i:car_t)  Person(i).Burnout
 
 /*
 
 */
-E[] MBudget==true && not exists (i:car_t)  Car(i).Burnout
+E[] not exists(i:car_t) Person(i).Burnout
 
 /*
 
 */
-E[] LBudget==true && not exists (i:car_t)  Car(i).Burnout
+A[] forall(i:car_t) not Person(i).Burnout
 
 /*
 
 */
-A[] forall(i:car_t) not Car(i).Burnout
+E[] not Company.Bankrupt
 
 /*
 
 */
 A[] not Company.Bankrupt
+
+/*
+
+*/
+A[] wallet > 0
+
+/*
+Person(0) ne travaille jamais
+*/
+E[] not Person(0).Working
+
+/*
+
+*/
+E<> now > 5 
 
 /*
 
