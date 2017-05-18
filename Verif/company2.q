@@ -48,7 +48,17 @@ E<> wallet == MONEY_MAX
 /*
 
 */
-E<> now > 50 imply money < MONEY_MAX
+A[] Person(0).Burnout imply Person(0).t_work >= T_BURNOUT
+
+/*
+
+*/
+E[] wallet < MONEY_MAX
+
+/*
+
+*/
+E[] money < MONEY_MAX
 
 /*
 
@@ -69,6 +79,21 @@ E<> MBudget && now < 15 && money == MONEY_MAX
 
 */
 E<> HBudget && now < 35 && money == MONEY_MAX
+
+/*
+
+*/
+A[] (wallet<WALLET_CRITICAL) imply not (Person(0).Home and Person(1).Home)
+
+/*
+
+*/
+A<> (Person(0).Working or Person(1).Working)
+
+/*
+
+*/
+A[] Person(0).Chomage imply counter==counter_max
 
 /*
 
