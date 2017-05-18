@@ -6,14 +6,25 @@ control: A[ (not exists (i:car_t) Car(i).Burnout) and Company.Working U money==1
 //NO_QUERY
 
 /*
-control: A[] (not exists (i:car_t) Car(i).Burnout) and Company.Working and rework==false
+control: A[] (not exists (i:car_t) Car(i).Burnout) and not Company.Bankrupt and rework==false
+*/
+//NO_QUERY
+
+/*
+A[] not deadlock
+*/
+//NO_QUERY
+
+/*
+control: A[] (not Company.Bankrupt) and (not exists (i:car_t) Car(i).Burnout) and neverRework
+
 */
 //NO_QUERY
 
 /*
 
 */
-control: A[] (not exists (i:car_t) Car(i).Burnout) and Company.Working
+control: A[] (not Company.Bankrupt ) and (not exists (i:car_t) Car(i).Burnout) 
 
 /*
 (Company.Startup and (money == MIN_UPGRADE)) --> Company.Upgraded
