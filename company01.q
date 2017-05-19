@@ -24,7 +24,7 @@ control: A[] (not Company.Bankrupt) and (not exists (i:car_t) Car(i).Burnout) an
 /*
 
 */
-control: A[] (not Company.Bankrupt ) and (not exists (i:car_t) Car(i).Burnout) 
+control: A[] (not Company.Bankrupt ) and (not exists (i:worker_t) Worker(i).Burnout) 
 
 /*
 (Company.Startup and (money == MIN_UPGRADE)) --> Company.Upgraded

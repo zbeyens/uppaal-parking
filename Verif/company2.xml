@@ -1,47 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
 
-clock now;
-const int PERSONS = 2;
-typedef int[0, PERSONS-1] car_t;
+clock t_global;
+const int WORKERS = 2;
+typedef int[0, WORKERS-1] worker_t;
 
-
-const int T_WORK_CRITICAL = 3;
-const int T_WORK = 1;
-const int GAIN = 2;
-const int MONEY_MAX = 10;
+const int MONEY_MAX = 5;
+int[0,MONEY_MAX] money = 1;
 const int MONEY_CRITICAL = 4;
-int[0,MONEY_MAX] money = 5;
 
-int[0,MONEY_MAX] wallet = 3;
+const int SALARY[3] = {1,2,3};
+int[1,3] salary=1;
+int[0,MONEY_MAX] wallet = 2;
 const int WALLET_CRITICAL = 3;
 const int personExpense = 1;
 
-const int T_PATH_MAX = 3;
-const int T_PATH_MIN = 1;
-const int T_SLEEP = 5;
-const int T_BURNOUT=4;
-const int T_BURNOUT_MAX = 8;
-const int T_REST=5;
-const int T_SALARY=5;
-const int T_LOOSE_MONEY = 7;
-const int T_IDLE_MAX = 3;
-//const int T_HOLIDAY=2;
-int[0,4] salary=1;
-bool rework = false;
-
-bool LBudget = true;
-bool MBudget = true;
-bool HBudget = true;
-
-//bool working[2] = {false,false};
-
-
-int[0,3] counter_max = 1;
+int[1,2] counter_max = 1;
 int[0,2] counter = 0;
-bool burnout[PERSONS] = {false,false};
+
+const int T_SPEND_MONEY = 8;
+const int TMAX_IDLE = 3;
+
+const int EPS = 1;
+const int T_WALK=3;
+const int T_BUS=2;
+const int T_CAR=1;
+const int T_SLEEP = 4;
+const int TMAX_WALK=T_WALK+EPS;
+const int TMAX_BUS=T_BUS+EPS;
+const int TMAX_CAR=T_CAR+EPS;
+const int TMAX_SLEEP = T_SLEEP+EPS;
+
+const int T_WORK = 1;
+const int T_WORK_CRITICAL = 3;
+const int GAIN = 2;
+const int T_SALARY=5;
+const int T_BURNOUT=4;
+const int TMAX_BURNOUT = 8;
+const int T_REST=5;
 
 
-//int[0,MONEY_MAX] wallets[CARS] = {4,4};
+bool budgetL = true;
+bool budgetM = true;
+bool budgetH = true;
+bool burnout[WORKERS] = {false,false};
+bool neverRework = true;
+bool neverWalk = true;
+bool neverBus = true;
+bool neverCar = true;
+
 
 void addMoney() {
 	int temp = money;
@@ -72,7 +78,7 @@ void giveMoney() {
 	}
 }
 
-void personLooseMoney() {
+void spendMoney() {
 	int temp = wallet;
 	temp -= personExpense;
 
@@ -81,36 +87,23 @@ void personLooseMoney() {
 	} else {
 		wallet=0;
 	}
-}
-
-//void spendMoney(car_t id) {
-//	int temp = wallets[id];
-//	temp -= SALARY;
-//
-//	if (temp &gt;= 0) {
-//		wallets[id]=temp;
-//	} else {
-//		wallets[id] = 0;
-//	}
-//}</declaration><template><name>Person</name><parameter>car_t id</parameter><declaration>clock t_work;
+}</declaration><template><name>Worker</name><parameter>worker_t id</parameter><declaration>clock t_work;
 clock t;
-</declaration><location id="id0" x="-592" y="232"><name x="-680" y="224">Chomage</name><label kind="invariant" x="-760" y="200">counter==counter_max</label></location><location id="id1" x="-552" y="536"><name x="-648" y="528">Holliday</name><label kind="invariant" x="-656" y="504">t&lt;=T_IDLE_MAX</label></location><location id="id2" x="600" y="232" color="#ff0000"><name x="590" y="202">Burnout</name><label kind="invariant" x="592" y="184">t &lt;= T_REST</label></location><location id="id3" x="384" y="232" color="#ffa500"><name x="368" y="240">Break</name><urgent/></location><location id="id4" x="-336" y="400" color="#00ffff"><name x="-320" y="408">Home</name><label kind="invariant" x="-360" y="424">t&lt;=T_IDLE_MAX</label></location><location id="id5" x="192" y="400" color="#00ffff"><name x="168" y="408">Exited</name><label kind="invariant" x="120" y="424">t&lt;= T_SLEEP</label></location><location id="id6" x="192" y="232" color="#ffa500"><name x="144" y="240">Working</name><label kind="invariant" x="120" y="256">t&lt;=T_WORK</label></location><location id="id7" x="-336" y="232" color="#ffa500"><name x="-360" y="200">Outside</name><label kind="invariant" x="-368" y="184">t &lt;= T_PATH_MAX</label></location><init ref="id4"/><transition><source ref="id0"/><target ref="id4"/><label kind="assignment" x="-512" y="312">t=0</label></transition><transition><source ref="id0"/><target ref="id7"/><label kind="guard" x="-544" y="216">counter&lt;counter_max</label><label kind="assignment" x="-448" y="232">t=0,
-t_work = 0,
-counter+=1</label></transition><transition><source ref="id4"/><target ref="id0"/><nail x="-592" y="360"/></transition><transition><source ref="id1"/><target ref="id4"/><nail x="-552" y="400"/></transition><transition><source ref="id4"/><target ref="id1"/><label kind="guard" x="-480" y="504">wallet &gt; WALLET_CRITICAL</label></transition><transition controllable="false" color="#a9a9a9"><source ref="id2"/><target ref="id4"/><label kind="guard" x="48" y="496">t==T_REST</label><label kind="assignment" x="48" y="512">t=0,
-burnout[id]=false</label><nail x="600" y="496"/><nail x="-336" y="488"/></transition><transition color="#00ffff"><source ref="id3"/><target ref="id5"/><label kind="guard" x="292" y="336">money &gt; MONEY_CRITICAL &amp;&amp;
-t_work &lt; T_BURNOUT_MAX</label><label kind="assignment" x="296" y="304">t=0,
-counter-=1</label></transition><transition controllable="false"><source ref="id7"/><target ref="id6"/><label kind="guard" x="-24" y="192">t&gt;=T_PATH_MIN</label><label kind="assignment" x="-24" y="208">t=0</label></transition><transition controllable="false"><source ref="id3"/><target ref="id2"/><label kind="guard" x="408" y="208">t_work &gt;= T_BURNOUT</label><label kind="assignment" x="432" y="232">t=0, counter-=1,
-burnout[id]=true</label></transition><transition controllable="false"><source ref="id5"/><target ref="id4"/><label kind="guard" x="-176" y="424">t == T_SLEEP</label><label kind="assignment" x="-176" y="408">t=0</label></transition><transition color="#ffa500"><source ref="id3"/><target ref="id6"/><label kind="guard" x="216" y="64">money &lt;= MONEY_CRITICAL &amp;&amp;
-t_work &lt; T_BURNOUT_MAX</label><label kind="assignment" x="216" y="96">t=0, rework = true</label><nail x="288" y="128"/></transition><transition controllable="false"><source ref="id6"/><target ref="id3"/><label kind="guard" x="216" y="232">t==T_WORK</label><label kind="assignment" x="216" y="248">t=0,
-addMoney()</label></transition><transition color="#ffa500"><source ref="id4"/><target ref="id7"/><label kind="guard" x="-328" y="336">counter&lt;counter_max</label><label kind="assignment" x="-328" y="288">t=0,
+</declaration><location id="id0" x="-592" y="520"><name x="-616" y="536">Holiday</name><label kind="invariant" x="-616" y="552">t&lt;=TMAX_IDLE</label></location><location id="id1" x="-592" y="232"><name x="-648" y="216">Lazy</name><label kind="invariant" x="-712" y="200">counter==counter_max</label></location><location id="id2" x="600" y="232" color="#ff0000"><name x="590" y="202">Burnout</name><label kind="invariant" x="576" y="184">t &lt;= T_REST</label></location><location id="id3" x="384" y="232"><name x="368" y="240">Break</name><urgent/></location><location id="id4" x="-336" y="400" color="#00ffff"><name x="-320" y="400">Home</name><label kind="invariant" x="-328" y="416">t&lt;=TMAX_IDLE</label></location><location id="id5" x="192" y="400"><name x="176" y="408">Sleep</name><label kind="invariant" x="152" y="424">t&lt;= TMAX_SLEEP</label></location><location id="id6" x="192" y="232"><name x="160" y="240">Working</name><label kind="invariant" x="128" y="256">t&lt;=T_WORK</label></location><location id="id7" x="-336" y="232"><name x="-360" y="200">Outside</name><label kind="invariant" x="-368" y="184">t &lt;= TMAX_CAR</label></location><init ref="id4"/><transition><source ref="id7"/><target ref="id6"/><label kind="guard" x="-144" y="296">t&gt;=T_CAR &amp;&amp; t&lt;=TMAX_CAR</label><label kind="assignment" x="-144" y="280">t=0, neverCar=false</label><nail x="-96" y="336"/></transition><transition><source ref="id7"/><target ref="id6"/><label kind="guard" x="-144" y="208">t&gt;=T_BUS &amp;&amp; t&lt;=TMAX_BUS</label><label kind="assignment" x="-144" y="192">t=0, neverBus=false</label></transition><transition><source ref="id7"/><target ref="id6"/><label kind="guard" x="-144" y="104">t&gt;=T_WALK &amp;&amp; t&lt;=TMAX_WALK</label><label kind="assignment" x="-144" y="88">t=0, neverWalk=false</label><nail x="-96" y="128"/></transition><transition><source ref="id0"/><target ref="id4"/><label kind="assignment" x="-416" y="520">t=0</label><nail x="-408" y="520"/></transition><transition><source ref="id4"/><target ref="id0"/><label kind="guard" x="-648" y="432">wallet &gt;= WALLET_CRITICAL</label></transition><transition><source ref="id2"/><target ref="id4"/><label kind="guard" x="0" y="560">t==T_REST</label><label kind="assignment" x="0" y="528">t=0,
+burnout[id]=false</label><nail x="600" y="528"/><nail x="-336" y="528"/></transition><transition><source ref="id1"/><target ref="id4"/><label kind="assignment" x="-432" y="240">t=0</label><nail x="-416" y="264"/><nail x="-352" y="384"/></transition><transition><source ref="id4"/><target ref="id1"/></transition><transition><source ref="id3"/><target ref="id5"/><label kind="guard" x="292" y="336">money &gt; MONEY_CRITICAL &amp;&amp;
+t_work &lt; TMAX_BURNOUT</label><label kind="assignment" x="296" y="304">t=0,
+counter-=1</label></transition><transition action=""><source ref="id3"/><target ref="id2"/><label kind="guard" x="408" y="208">t_work &gt;= T_BURNOUT</label><label kind="assignment" x="432" y="232">t=0, counter-=1,
+burnout[id]=true</label></transition><transition action=""><source ref="id5"/><target ref="id4"/><label kind="guard" x="-144" y="416">t &gt;= T_SLEEP</label><label kind="assignment" x="-144" y="400">t=0</label></transition><transition><source ref="id3"/><target ref="id6"/><label kind="guard" x="216" y="80">money &lt;= MONEY_CRITICAL &amp;&amp;
+t_work &lt; TMAX_BURNOUT</label><label kind="assignment" x="216" y="112">t=0, neverRework=false</label><nail x="288" y="128"/></transition><transition action=""><source ref="id6"/><target ref="id3"/><label kind="guard" x="248" y="208">t==T_WORK</label><label kind="assignment" x="248" y="232">t=0,
+addMoney()</label></transition><transition><source ref="id4"/><target ref="id7"/><label kind="guard" x="-328" y="336">counter&lt;counter_max</label><label kind="assignment" x="-328" y="288">t=0,
 t_work=0,
-counter+=1</label></transition></template><template><name>CarSalary</name><parameter>car_t id</parameter><declaration>clock s;</declaration><location id="id8" x="-344" y="-88" color="#00ffff"><name x="-328" y="-96">Salary</name><label kind="invariant" x="-344" y="-80">s&lt;=T_SALARY</label></location><init ref="id8"/><transition controllable="false"><source ref="id8"/><target ref="id8"/><label kind="guard" x="-464" y="-16">s==T_SALARY &amp;&amp;
-burnout[id]==true</label><label kind="assignment" x="-464" y="16">s=0</label><nail x="-472" y="-88"/><nail x="-408" y="-24"/></transition><transition controllable="false"><source ref="id8"/><target ref="id8"/><label kind="guard" x="-376" y="-232">s==T_SALARY &amp;&amp;
+counter+=1</label></transition></template><template><name>WorkerSalary</name><parameter>worker_t id</parameter><declaration>clock s;</declaration><location id="id8" x="-344" y="-88" color="#00ffff"><name x="-352" y="-72">Salary</name><label kind="invariant" x="-352" y="-56">s&lt;=T_SALARY</label></location><init ref="id8"/><transition action=""><source ref="id8"/><target ref="id8"/><label kind="guard" x="-464" y="-16">s==T_SALARY &amp;&amp;
+burnout[id]==true</label><label kind="assignment" x="-464" y="16">s=0</label><nail x="-472" y="-88"/><nail x="-408" y="-24"/></transition><transition action=""><source ref="id8"/><target ref="id8"/><label kind="guard" x="-376" y="-232">s==T_SALARY &amp;&amp;
 burnout[id]==false</label><label kind="assignment" x="-376" y="-200">s=0,
-giveMoney()</label><nail x="-408" y="-160"/><nail x="-272" y="-160"/></transition></template><template><name>Company</name><location id="id9" x="152" y="-24"><name x="136" y="-64">Big</name></location><location id="id10" x="-240" y="88"><name x="-250" y="58">High</name><urgent/></location><location id="id11" x="-240" y="-24"><name x="-272" y="-56">Medium</name><urgent/></location><location id="id12" x="-240" y="-128"><name x="-250" y="-158">Low</name><urgent/></location><location id="id13" x="-416" y="-24"><name x="-472" y="-16">Startup</name><urgent/></location><location id="id14" x="336" y="-24" color="#ff0000"><name x="320" y="-16">Bankrupt</name></location><location id="id15" x="-112" y="-24" color="#ffa500"><name x="-104" y="-48">Small</name></location><init ref="id13"/><transition><source ref="id14"/><target ref="id14"/><nail x="432" y="-24"/><nail x="432" y="-80"/></transition><transition><source ref="id15"/><target ref="id14"/><label kind="guard" x="128" y="48">money==0</label><nail x="72" y="64"/></transition><transition><source ref="id9"/><target ref="id14"/><label kind="guard" x="184" y="-48">money == 0</label></transition><transition><source ref="id15"/><target ref="id9"/><label kind="guard" x="-32" y="-48">money==MONEY_MAX</label><label kind="assignment" x="-16" y="-24">counter_max+=1</label></transition><transition><source ref="id10"/><target ref="id15"/><label kind="assignment" x="-200" y="88">salary=3</label><nail x="-112" y="88"/></transition><transition><source ref="id13"/><target ref="id10"/><label kind="assignment" x="-384" y="88">MBudget=false,
-LBudget=false</label><nail x="-416" y="88"/></transition><transition><source ref="id11"/><target ref="id15"/><label kind="assignment" x="-200" y="-24">salary=2</label></transition><transition><source ref="id13"/><target ref="id11"/><label kind="assignment" x="-388" y="-24">LBudget=false,
-HBudget=false</label></transition><transition><source ref="id12"/><target ref="id15"/><label kind="assignment" x="-200" y="-128">salary=1</label><nail x="-112" y="-128"/></transition><transition><source ref="id13"/><target ref="id12"/><label kind="assignment" x="-384" y="-168">MBudget=false,
-HBudget=false</label><nail x="-416" y="-128"/></transition></template><template><name>PersonExpense</name><declaration>clock s;</declaration><location id="id16" x="0" y="0"><label kind="invariant" x="-10" y="15">s&lt;=T_LOOSE_MONEY</label></location><init ref="id16"/><transition><source ref="id16"/><target ref="id16"/><label kind="guard" x="48" y="-56">s==T_LOOSE_MONEY</label><label kind="assignment" x="40" y="-24">s=0,
-personLooseMoney()</label><nail x="0" y="-96"/><nail x="64" y="-96"/></transition></template><system>// Place template instantiations here.
+giveMoney()</label><nail x="-408" y="-160"/><nail x="-272" y="-160"/></transition></template><template><name>Company</name><location id="id9" x="120" y="-24"><name x="112" y="-56">Big</name></location><location id="id10" x="-416" y="-24" color="#00ffff"><name x="-472" y="-16">Startup</name><urgent/></location><location id="id11" x="336" y="-24" color="#ff0000"><name x="304" y="-8">Bankrupt</name></location><location id="id12" x="-112" y="-24"><name x="-112" y="-56">Small</name></location><init ref="id10"/><transition><source ref="id10"/><target ref="id12"/><label kind="assignment" x="-392" y="32">salary=SALARY[2], 
+budgetL=false, budgetM=false</label><nail x="-416" y="72"/><nail x="-160" y="72"/></transition><transition><source ref="id10"/><target ref="id12"/><label kind="assignment" x="-392" y="-64">salary=SALARY[1], 
+budgetL=false, budgetH=false</label></transition><transition><source ref="id10"/><target ref="id12"/><label kind="assignment" x="-392" y="-160">salary=SALARY[0],
+budgetM=false, budgetH=false</label><nail x="-416" y="-120"/><nail x="-168" y="-120"/></transition><transition><source ref="id11"/><target ref="id11"/><nail x="432" y="-88"/><nail x="432" y="48"/></transition><transition><source ref="id12"/><target ref="id11"/><label kind="guard" x="88" y="64">money==0</label><nail x="120" y="64"/></transition><transition><source ref="id9"/><target ref="id11"/><label kind="guard" x="176" y="-48">money==0</label></transition><transition><source ref="id12"/><target ref="id9"/><label kind="guard" x="-56" y="-48">money==MONEY_MAX</label><label kind="assignment" x="-40" y="-24">counter_max+=1</label></transition></template><template><name>WorkerExpense</name><declaration>clock s;</declaration><location id="id13" x="0" y="0" color="#00ffff"><label kind="invariant" x="-64" y="16">s&lt;=T_SPEND_MONEY</label></location><init ref="id13"/><transition><source ref="id13"/><target ref="id13"/><label kind="guard" x="-40" y="-152">s==T_SPEND_MONEY</label><label kind="assignment" x="-40" y="-136">s=0,
+spendMoney()</label><nail x="-72" y="-96"/><nail x="64" y="-96"/></transition></template><system>// Place template instantiations here.
 // List one or more processes to be composed into a system.
-system Person, CarSalary, Company, PersonExpense;</system></nta>
+system Worker, WorkerSalary, Company, WorkerExpense;</system></nta>
