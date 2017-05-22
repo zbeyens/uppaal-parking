@@ -1,24 +1,59 @@
-//This file was generated from (Academic) UPPAAL 4.1.4 (rev. 5535), March 2014
+//This file was generated from (Commercial) UPPAAL 4.0.14 (rev. 5615), May 2014
+
+/*
+Correctness
+*/
+//NO_QUERY
+
+/*
+Safety
+*/
+//NO_QUERY
+
+/*
+true
+*/
+A[] (Worker(0).Working && Worker(1).Working)  imply counter_max>=2
+
+/*
+true
+*/
+A[] Company.Small imply not (Worker(0).Working && Worker(1).Working) 
+
+/*
+Safety
+*/
+//NO_QUERY
 
 /*
 
 */
-E[] not exists(i:worker_t) Worker(i).Burnout
+E[] not exists(i:worker_t) Worker(i).Burnout and money > 0
 
 /*
 
 */
-A[] forall(i:worker_t) not Worker(i).Burnout
+A[] money > 0
 
 /*
 
 */
-E[] not Company.Bankrupt
+A[] not exists(i:worker_t) Worker(i).Burnout 
 
 /*
 
 */
-A[] not Company.Bankrupt
+E[] (not exists(i:worker_t) Worker(i).Burnout) and money>0 and budgetH and neverCar
+
+/*
+
+*/
+E[]  money > 5 and budgetH and not exists(i:worker_t) (Worker(i).Burnout)
+
+/*
+
+*/
+E[] wallet >0 
 
 /*
 
@@ -28,17 +63,27 @@ A[] wallet > 0
 /*
 
 */
-A[] (Worker(0).Working && Worker(1).Working)  imply counter_max>=2
+E[] wallet < MONEY_MAX
 
 /*
 
 */
-A[] Company.Small imply not (Worker(0).Working && Worker(1).Working) 
+E[] money < MONEY_MAX and wallet < MONEY_MAX
 
 /*
 
 */
-E[] not rework && not exists(i:worker_t) Worker(i).Burnout
+//NO_QUERY
+
+/*
+
+*/
+E<> Worker(i).Burnout and money > 0 and budgetH
+
+/*
+
+*/
+//NO_QUERY
 
 /*
 ! not burnout trivial
@@ -56,14 +101,9 @@ E<> wallet == MONEY_MAX
 A[] Worker(0).Burnout imply Worker(0).t_work >= T_BURNOUT
 
 /*
-
+Safety
 */
-E[] wallet < MONEY_MAX
-
-/*
-
-*/
-E[] money < MONEY_MAX and wallet < MONEY_MAX
+//NO_QUERY
 
 /*
 
