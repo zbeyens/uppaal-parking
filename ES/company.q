@@ -11,11 +11,6 @@ control: A[] (not exists (i:car_t) Car(i).Burnout) and not Company.Bankrupt and 
 //NO_QUERY
 
 /*
-A[] not deadlock
-*/
-//NO_QUERY
-
-/*
 control: A[] (not Company.Bankrupt) and (not exists (i:car_t) Car(i).Burnout) and neverRework
 
 */

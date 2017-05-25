@@ -1,1 +1,0 @@
-../bin-Win32/verifytga -t0 -c "company02.xml" > output.txt
