@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
+
+clock t_global; //a global clock never reset
+const int WORKERS = 2; //the number of workers process
+typedef int[0, WORKERS-1] worker_t; //bounded integer (i.e. for id Worker)
+
+const int MONEY_MAX = 5; //max money that the Company and the wallet can reach. 
+int[0,MONEY_MAX] money = 1; //initial money of the Company
+const int MONEY_CRITICAL = 4; //threshold enabling the workers to rework after break
+
+const int BUDGETS[3] = {1,2,3}; //one same budget chosen by the company
+int[1,3] budget=1; //budget chosen in BUDGET, used when addMoney and giveMoney
+//each time a worker works, addMoney, (2*budget) money to the company and 
+//add (budget) money to the wallet of the workers 
+
+int[0,MONEY_MAX] wallet = 2; //the common wallet of the workers 
+const int WALLET_CRITICAL = 3; //threshold enabling to go to holiday when at home
+const int personExpense = 1; //common regular expenses of the workers (spendMoney)
+
+int[1,2] counter_max = 1; //the number of worker that can work at the same time in the company. 2 if Big
+int[0,2] counter = 0; //the number of worker working at the same time in the company
+
+const int T_SPEND_MONEY = 8; //clock interval - workers spend common money
+const int T_IDLE = 2;
+const int TMAX_IDLE = 3; //clock limit - staying at Home or Holiday
+
+const int EPS = 1; //epsilon clock
+const int T_WALK=3; //min time to walk to Work
+const int T_BUS=2; //min time to go by bus to Work
+const int T_CAR=1; //min time to go by car to Work
+const int T_SLEEP = 4; //min time of sleeping after work
+const int TMAX_WALK=T_WALK+EPS;
+const int TMAX_BUS=T_BUS+EPS;
+const int TMAX_CAR=T_CAR+EPS;
+const int TMAX_SLEEP = T_SLEEP+EPS;
+
+const int T_WORK = 1; //time of working
+const int T_WORK_CRITICAL = 3; //threshold to stop working to avoid burnout.
+const int T_FEE=5; //clock interval - fee of each worker.
+const int T_BURNOUT=4; //min time to go to Burnout
+const int TMAX_BURNOUT = 8;
+const int T_REST=5; //time to rest when in Burnout
+
+
+bool budgetL = true; //always true if first budget has been chosen 
+bool budgetM = true; //always true if second budget has been chosen
+bool budgetH = true; //always true if third budget has been chosen
+bool burnout[WORKERS] = {false,false}; //always false if never burnout
+bool neverRework = true; //always true if never rework after a Break
+bool neverWalk = true; //always true if never took walk transition
+bool neverBus = true; //always true if never bus
+bool neverCar = true; //always true if never walk
+bool neverLazy = true;
+bool neverHoliday = true;
+
+
+void addMoney() {
+	int temp = money;
+	temp += budget*2;
+	if (temp &lt;= MONEY_MAX) {
+		money=temp;
+	} else {
+		money=MONEY_MAX;
+	}
+
+	temp = wallet;
+	temp += budget;
+	if (temp &lt;= MONEY_MAX) {
+		wallet=temp;
+	} else {
+		wallet=MONEY_MAX;
+	}
+}
+
+void giveMoney() {
+	int temp = money;
+	temp -= budget;
+
+	if (temp &gt;= 0) {
+		money=temp;
+	} else {
+		money=0;
+	}
+}
+
+void spendMoney() {
+	int temp = wallet;
+	temp -= personExpense;
+
+	if (temp &gt;= 0) {
+		wallet=temp;
+	} else {
+		wallet=0;
+	}
+}</declaration><template><name>Worker</name><parameter>worker_t id</parameter><declaration>clock t_work;
+clock t;
+</declaration><location id="id0" x="-592" y="520"><name x="-616" y="536">Holiday</name><label kind="invariant" x="-616" y="552">t&lt;=TMAX_IDLE</label></location><location id="id1" x="-592" y="232"><name x="-688" y="216">Unemployed</name><label kind="invariant" x="-688" y="200">t&lt;=TMAX_IDLE</label></location><location id="id2" x="600" y="232" color="#ff0000"><name x="590" y="202">Burnout</name><label kind="invariant" x="576" y="184">t &lt;= T_REST</label></location><location id="id3" x="384" y="232"><name x="368" y="240">Break</name><urgent/></location><location id="id4" x="-336" y="400" color="#00ffff"><name x="-320" y="400">Home</name><label kind="invariant" x="-328" y="416">t&lt;=TMAX_IDLE</label></location><location id="id5" x="192" y="400"><name x="176" y="408">Sleep</name><label kind="invariant" x="152" y="424">t&lt;= TMAX_SLEEP</label></location><location id="id6" x="192" y="232"><name x="160" y="240">Working</name><label kind="invariant" x="128" y="256">t&lt;=T_WORK</label></location><location id="id7" x="-336" y="232"><name x="-360" y="200">Outside</name><label kind="invariant" x="-368" y="184">t &lt;= TMAX_CAR</label></location><init ref="id4"/><transition><source ref="id7"/><target ref="id6"/><label kind="guard" x="-144" y="296">t&gt;=T_CAR &amp;&amp; t&lt;=TMAX_CAR</label><label kind="assignment" x="-144" y="280">t=0, neverCar=false</label><nail x="-96" y="336"/></transition><transition><source ref="id7"/><target ref="id6"/><label kind="guard" x="-144" y="208">t&gt;=T_BUS &amp;&amp; t&lt;=TMAX_BUS</label><label kind="assignment" x="-144" y="192">t=0, neverBus=false</label></transition><transition><source ref="id7"/><target ref="id6"/><label kind="guard" x="-144" y="104">t&gt;=T_WALK &amp;&amp; t&lt;=TMAX_WALK</label><label kind="assignment" x="-144" y="88">t=0, neverWalk=false</label><nail x="-96" y="128"/></transition><transition><source ref="id0"/><target ref="id4"/><label kind="guard" x="-456" y="536">t&gt;=T_IDLE</label><label kind="assignment" x="-416" y="520">t=0</label><nail x="-408" y="520"/></transition><transition><source ref="id4"/><target ref="id0"/><label kind="guard" x="-624" y="416">wallet &gt;= WALLET_CRITICAL &amp;&amp;
+t&gt;=T_IDLE</label><label kind="assignment" x="-632" y="448">t=0, neverHoliday=false</label></transition><transition><source ref="id2"/><target ref="id4"/><label kind="guard" x="0" y="560">t==T_REST</label><label kind="assignment" x="0" y="528">t=0,
+burnout[id]=false</label><nail x="600" y="528"/><nail x="-336" y="528"/></transition><transition><source ref="id1"/><target ref="id4"/><label kind="guard" x="-472" y="224">t&gt;=T_IDLE</label><label kind="assignment" x="-432" y="240">t=0</label><nail x="-416" y="264"/><nail x="-352" y="384"/></transition><transition><source ref="id4"/><target ref="id1"/><label kind="guard" x="-632" y="312">counter==counter_max &amp;&amp;
+t&gt;=T_IDLE</label><label kind="assignment" x="-624" y="296">t=0, neverLazy=false</label></transition><transition><source ref="id3"/><target ref="id5"/><label kind="guard" x="292" y="336">money &gt; MONEY_CRITICAL &amp;&amp;
+t_work &lt; TMAX_BURNOUT</label><label kind="assignment" x="296" y="304">t=0,
+counter-=1</label></transition><transition><source ref="id3"/><target ref="id2"/><label kind="guard" x="528" y="120">t_work &gt;= T_BURNOUT</label><label kind="assignment" x="432" y="232">t=0, counter-=1,
+burnout[id]=true</label></transition><transition><source ref="id5"/><target ref="id4"/><label kind="guard" x="-144" y="416">t &gt;= T_SLEEP</label><label kind="assignment" x="-144" y="400">t=0</label></transition><transition><source ref="id3"/><target ref="id6"/><label kind="guard" x="216" y="80">money &lt;= MONEY_CRITICAL &amp;&amp;
+t_work &lt; TMAX_BURNOUT</label><label kind="assignment" x="216" y="112">t=0, neverRework=false</label><nail x="288" y="128"/></transition><transition><source ref="id6"/><target ref="id3"/><label kind="guard" x="248" y="208">t==T_WORK</label><label kind="assignment" x="248" y="232">t=0,
+addMoney()</label></transition><transition><source ref="id4"/><target ref="id7"/><label kind="guard" x="-328" y="336">counter&lt;counter_max</label><label kind="assignment" x="-328" y="288">t=0,
+t_work=0,
+counter+=1</label></transition></template><template><name>WorkerFee</name><parameter>worker_t id</parameter><declaration>clock s;</declaration><location id="id8" x="-344" y="-88" color="#00ffff"><name x="-352" y="-72">Fee</name><label kind="invariant" x="-352" y="-56">s&lt;=T_FEE</label></location><init ref="id8"/><transition><source ref="id8"/><target ref="id8"/><label kind="guard" x="-464" y="-16">s==T_FEE &amp;&amp;
+burnout[id]==true</label><label kind="assignment" x="-464" y="16">s=0</label><nail x="-472" y="-88"/><nail x="-408" y="-24"/></transition><transition><source ref="id8"/><target ref="id8"/><label kind="guard" x="-376" y="-232">s==T_FEE &amp;&amp;
+burnout[id]==false</label><label kind="assignment" x="-376" y="-200">s=0,
+giveMoney()</label><nail x="-408" y="-160"/><nail x="-272" y="-160"/></transition></template><template><name>Company</name><location id="id9" x="120" y="-24"><name x="112" y="-56">Big</name></location><location id="id10" x="-416" y="-24" color="#00ffff"><name x="-472" y="-16">Startup</name><urgent/></location><location id="id11" x="336" y="-24" color="#ff0000"><name x="304" y="-8">Bankrupt</name></location><location id="id12" x="-112" y="-24"><name x="-112" y="-56">Small</name></location><init ref="id10"/><transition><source ref="id10"/><target ref="id12"/><label kind="assignment" x="-392" y="32">budget=BUDGETS[2], 
+budgetL=false, budgetM=false</label><nail x="-416" y="72"/><nail x="-160" y="72"/></transition><transition><source ref="id10"/><target ref="id12"/><label kind="assignment" x="-392" y="-64">budget=BUDGETS[1], 
+budgetL=false, budgetH=false</label></transition><transition><source ref="id10"/><target ref="id12"/><label kind="assignment" x="-392" y="-160">budget=BUDGETS[0],
+budgetM=false, budgetH=false</label><nail x="-416" y="-120"/><nail x="-168" y="-120"/></transition><transition><source ref="id12"/><target ref="id11"/><label kind="guard" x="88" y="64">money==0</label><nail x="120" y="64"/></transition><transition><source ref="id9"/><target ref="id11"/><label kind="guard" x="176" y="-48">money==0</label></transition><transition><source ref="id12"/><target ref="id9"/><label kind="guard" x="-56" y="-48">money==MONEY_MAX</label><label kind="assignment" x="-40" y="-24">counter_max+=1</label></transition></template><template><name>WorkerExpense</name><declaration>clock s;</declaration><location id="id13" x="0" y="0" color="#00ffff"><label kind="invariant" x="-64" y="16">s&lt;=T_SPEND_MONEY</label></location><init ref="id13"/><transition><source ref="id13"/><target ref="id13"/><label kind="guard" x="-40" y="-152">s==T_SPEND_MONEY</label><label kind="assignment" x="-40" y="-136">s=0,
+spendMoney()</label><nail x="-72" y="-96"/><nail x="64" y="-96"/></transition></template><system>// Place template instantiations here.
+// List one or more processes to be composed into a system.
+system Worker, WorkerFee, Company, WorkerExpense;</system></nta>
