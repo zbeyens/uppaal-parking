@@ -1,5 +1,6 @@
 #include "model.h"
 
-int main(){
-	model();
+int main() {
+  Model();
+  return 0;
 }

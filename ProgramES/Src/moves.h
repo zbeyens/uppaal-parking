@@ -1,4 +1,4 @@
-#include "character.h"
+#include "globalVariable.h"
 
 int takeTransition(Worker *w, char *edge);
 int rand_a_b(int a, int b);

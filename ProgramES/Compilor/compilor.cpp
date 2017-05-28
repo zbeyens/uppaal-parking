@@ -12,7 +12,8 @@ Compilor::Compilor(char* filename){
 }
 void Compilor::printFile(){
 	if (outfile.is_open()){
-		outfile<<"#include \"moves.h\"\n\n";
+		
+		outfile<<"#include \"strategy.h\"\n\n";
 		outfile<<"int strategy(Worker **worker, WorkerFee **workerfee, Company *company){\n";
 		parse();
 		outfile<<"\t}\n\treturn 0;\n}";
