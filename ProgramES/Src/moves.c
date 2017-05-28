@@ -1,12 +1,12 @@
 #include "moves.h"
 
 int takeTransition(Worker *w, char* edge){
-	int e1 = strcomp(edge,"counter<counter_max&&t_work<T_BURNOUT,t:=0,t_work:=0,counter+=1");
-	int e2 = strcomp(edge,"t_work<T_BURNOUT,t:=0");
-	int e3 = strcomp(edge,"t>=T_CAR&&t<=TMAX_CAR,t:=0");
-	int e4 = strcomp(edge,"t>=T_BUS&&t<=TMAX_BUS,t:=0");
-	int e5 = strcomp(edge,"t>=T_WALK&&t<=TMAX_WALK,t:=0");
-	int e6 = strcomp(edge,"t_work<T_BURNOUT,t:=0,counter-=1");
+	int e1 = strcmp(edge,"counter<counter_max&&t_work<T_BURNOUT,t:=0,t_work:=0,counter+=1");
+	int e2 = strcmp(edge,"t_work<T_BURNOUT,t:=0");
+	int e3 = strcmp(edge,"t>=T_CAR&&t<=TMAX_CAR,t:=0");
+	int e4 = strcmp(edge,"t>=T_BUS&&t<=TMAX_BUS,t:=0");
+	int e5 = strcmp(edge,"t>=T_WALK&&t<=TMAX_WALK,t:=0");
+	int e6 = strcmp(edge,"t_work<T_BURNOUT,t:=0,counter-=1");
 	if (e1){
 		w->t = 0;
 		w->t_work = 0;
@@ -70,12 +70,12 @@ void StartUp(Company *c){
 
 void WorkingCompany(Company *c){
 	if (money == 0){
-		c->state == "Bankrupt";
+		c->state = "Bankrupt";
 	}
 }
 
 void Bankrupt(Company *c){
-	c->state == "Bankrupt";
+	c->state = "Bankrupt";
 }
 
 void Fee(WorkerFee *f){
