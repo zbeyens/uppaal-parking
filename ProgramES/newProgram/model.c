@@ -42,13 +42,17 @@ int main() {
 	fprintf(fp,"workerfee (%d)\n", workerFees[1]->id);
 	fprintf(fp,"\ts = %f\n\n", workerFees[1]->s);
 	fprintf(fp,"Company:\n\tstate: %s\n\n", company->state);
+	int j = 0;
 	if (strategy(workers, workerFees, company) == 0) {
+		int a = rand_a_b(0,3);
 		//CompanyCase
 		companyCase(company);
-		// workerCase
-		workerCase(workers);
-		// WorkerFeeCase
+		//workerCase
+		workerCase1(workers,0);
+		workerCase1(workers,1);
+		//workerFeeCase
 		workerFeeCase(workerFees);
+		
 	}
 	workers[0]->t += step;
 	workers[1]->t += step;
@@ -88,6 +92,37 @@ void initialization(Worker **workers, WorkerFee **workerFees,
   workerFees[1]->state = "Fee";
   company->id = 0;
   company->state = "StartUp";
+}
+
+void workerCase1(Worker **workers, int a){
+	int i = 0;
+	//int a = rand_a_b(0,2);
+	if (strcmp(workers[a]->state, "Home")==0 && i == 0) {
+		Home(workers[a]);
+		i++;
+	}
+	if (strcmp(workers[a]->state,"Outside")==0 && i ==0){i++;}
+	if (strcmp(workers[a]->state, "Working")==0 && i == 0) {
+		Working(workers[a]);
+		i++;
+	}
+	if (strcmp(workers[a]->state, "Break")==0 && i == 0) {
+		Break(workers[a]);
+		i++;
+	}
+	if (strcmp(workers[a]->state, "Sleep")==0 && i == 0) {
+		sleep(workers[a]);
+		i++;
+    }
+	if (strcmp(workers[a]->state, "Burnout")==0 && i == 0) {
+      Burnout(workers[a]);
+      i++;
+    }
+		
+		
+		
+	
+	
 }
 
 void workerCase(Worker **workers) {

@@ -53,6 +53,7 @@ void initialization(Worker **workers, WorkerFee **workerfees, Company *company);
 void companyCase(Company *company);
 void workerFeeCase(WorkerFee **workerFees);
 void workerCase(Worker **workers);
+void workerCase1(Worker **workers, int a);
 int strategy(Worker **worker, WorkerFee **workerfee, Company *company);
 int model();
 int takeTransition(Worker *w, char *edge);
