@@ -1,0 +1,285 @@
+update n0:
+money = 1
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 0.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 0.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 0.000000
+
+workerfee (1)
+	s = 0.000000
+
+Company:
+	state: StartUp
+
+update n1:
+money = 1
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 1.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 1.000000
+
+workerfee (1)
+	s = 1.000000
+
+Company:
+	state: Working
+
+update n2:
+money = 1
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 2.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 2.000000
+
+workerfee (1)
+	s = 2.000000
+
+Company:
+	state: Working
+
+update n3:
+money = 1
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 3.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 3.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 3.000000
+
+workerfee (1)
+	s = 3.000000
+
+Company:
+	state: Working
+
+update n4:
+money = 1
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 4.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 4.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 4.000000
+
+workerfee (1)
+	s = 4.000000
+
+Company:
+	state: Working
+
+update n5:
+money = 1
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 5.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 5.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 5.000000
+
+workerfee (1)
+	s = 5.000000
+
+Company:
+	state: Working
+
+update n6:
+money = 1
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 6.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 6.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 6.000000
+
+workerfee (1)
+	s = 6.000000
+
+Company:
+	state: Working
+
+update n7:
+money = 1
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 7.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 7.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 7.000000
+
+workerfee (1)
+	s = 7.000000
+
+Company:
+	state: Working
+
+update n8:
+money = 1
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 8.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 8.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 8.000000
+
+workerfee (1)
+	s = 8.000000
+
+Company:
+	state: Working
+
+update n9:
+money = 1
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 9.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 9.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 9.000000
+
+workerfee (1)
+	s = 9.000000
+
+Company:
+	state: Working
+
+update n10:
+money = 1
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 10.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 10.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 10.000000
+
+workerfee (1)
+	s = 10.000000
+
+Company:
+	state: Working
+
+update n11:
+money = 0
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 11.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 11.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 1.000000
+
+workerfee (1)
+	s = 1.000000
+
+Company:
+	state: Working
+
+update n12:
+money = 0
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 12.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 12.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 2.000000
+
+workerfee (1)
+	s = 2.000000
+
+Company:
+	state: Bankrupt
+
+update n13:
+money = 0
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 13.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 13.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 3.000000
+
+workerfee (1)
+	s = 3.000000
+
+Company:
+	state: Bankrupt
+
+update n14:
+money = 0
+budget = 1
+counter = 0
+worker (0)
+	state : Home,	t= 14.000000,	Work time = 0.000000
+
+worker (1)
+	state : Home,	t= 14.000000,	Work time = 0.000000
+
+workerfee (0)
+	s = 4.000000
+
+workerfee (1)
+	s = 4.000000
+
+Company:
+	state: Bankrupt
+

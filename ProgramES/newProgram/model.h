@@ -32,14 +32,14 @@ int TMAX_SLEEP;
 
 typedef struct _w {
   int id;
-  int t;
-  int t_work;
+  double t;
+  double t_work;
   char *state;
 } Worker;
 
 typedef struct _wf {
   int id;
-  int s;
+  double s;
   char *state;
 } WorkerFee;
 
@@ -54,7 +54,7 @@ void companyCase(Company *company);
 void workerFeeCase(WorkerFee **workerFees);
 void workerCase(Worker **workers);
 int strategy(Worker **worker, WorkerFee **workerfee, Company *company);
-int main();
+int model();
 int takeTransition(Worker *w, char *edge);
 int rand_a_b(int a, int b);
 void Home(Worker *w);

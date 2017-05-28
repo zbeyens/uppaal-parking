@@ -6,14 +6,15 @@ using namespace std;
 Compilor::Compilor(char* filename){
 	swords = {"take", "transition", "When", "you", "are", "in", "State:","Strategy", "to", "avoid", "losing:"};
 	infile.open(filename,ifstream::in);
-	outfile.open("../Src/strategy.c");
+	//outfile.open("../Src/strategy.c");
+	outfile.open("../newProgram/model.c", ios::out | ios::app);
 	printFile();
 		
 }
 void Compilor::printFile(){
 	if (outfile.is_open()){
 		
-		outfile<<"#include \"strategy.h\"\n\n";
+		//outfile<<"#include \"strategy.h\"\n\n";
 		outfile<<"int strategy(Worker **worker, WorkerFee **workerfee, Company *company){\n";
 		parse();
 		outfile<<"\t}\n\treturn 0;\n}";
@@ -204,7 +205,7 @@ void Compilor::printState(vector<string> stateWord){
 							outfile << ("->" + word2);
 						}
 						else{
-							outfile<<("->state,\""+word2+ "\")");
+							outfile<<("->state,\""+word2+ "\")==0");
 						}
 						break;
 					
