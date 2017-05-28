@@ -42,15 +42,18 @@ int main() {
 	fprintf(fp,"workerfee (%d)\n", workerFees[1]->id);
 	fprintf(fp,"\ts = %f\n\n", workerFees[1]->s);
 	fprintf(fp,"Company:\n\tstate: %s\n\n", company->state);
-	// workerCase
-	workerCase(workers);
 	if (strategy(workers, workerFees, company) == 0) {
+		//CompanyCase
 		companyCase(company);
+		// workerCase
+		workerCase(workers);
+		// WorkerFeeCase
+		workerFeeCase(workerFees);
 	}
-	// WorkerFeeCase
-	workerFeeCase(workerFees);
 	workers[0]->t += step;
 	workers[1]->t += step;
+	workers[0]->t_work += step;
+	workers[1]->t_work += step;
 	workerFees[0] ->s += step;
 	workerFees[1] ->s += step;
      
@@ -113,12 +116,10 @@ void workerCase(Worker **workers) {
                                strcmp(workers[1]->state, "Working")==0)) {
     if (strcmp(workers[0]->state, "Working")==0 && i1 == 0) {
 		Working(workers[0]);
-		workers[0]->t_work +=0.1;
 		i1++;
     }
     if (strcmp(workers[1]->state, "Working")==0 && i2 == 0) {
 		Working(workers[1]);
-		workers[1]->t_work +=0.1;
 		i2++;
     }
   }

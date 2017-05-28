@@ -22,10 +22,10 @@ money = 1
 budget = 1
 counter = 0
 worker (0)
-	state : Home,	t= 1.000000,	Work time = 0.000000
+	state : Home,	t= 1.000000,	Work time = 1.000000
 
 worker (1)
-	state : Home,	t= 1.000000,	Work time = 0.000000
+	state : Home,	t= 1.000000,	Work time = 1.000000
 
 workerfee (0)
 	s = 1.000000
@@ -39,12 +39,12 @@ Company:
 update n2:
 money = 1
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 2.000000,	Work time = 0.000000
+	state : Home,	t= 2.000000,	Work time = 2.000000
 
 worker (1)
-	state : Home,	t= 2.000000,	Work time = 0.000000
+	state : Outside,	t= 1.000000,	Work time = 1.000000
 
 workerfee (0)
 	s = 2.000000
@@ -58,12 +58,12 @@ Company:
 update n3:
 money = 1
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 3.000000,	Work time = 0.000000
+	state : Home,	t= 3.000000,	Work time = 3.000000
 
 worker (1)
-	state : Home,	t= 3.000000,	Work time = 0.000000
+	state : Working,	t= 1.000000,	Work time = 2.000000
 
 workerfee (0)
 	s = 3.000000
@@ -77,12 +77,12 @@ Company:
 update n4:
 money = 1
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 4.000000,	Work time = 0.000000
+	state : Home,	t= 4.000000,	Work time = 4.000000
 
 worker (1)
-	state : Home,	t= 4.000000,	Work time = 0.000000
+	state : Working,	t= 2.000000,	Work time = 3.000000
 
 workerfee (0)
 	s = 4.000000
@@ -96,12 +96,12 @@ Company:
 update n5:
 money = 1
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 5.000000,	Work time = 0.000000
+	state : Home,	t= 5.000000,	Work time = 5.000000
 
 worker (1)
-	state : Home,	t= 5.000000,	Work time = 0.000000
+	state : Working,	t= 3.000000,	Work time = 4.000000
 
 workerfee (0)
 	s = 5.000000
@@ -115,12 +115,12 @@ Company:
 update n6:
 money = 1
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 6.000000,	Work time = 0.000000
+	state : Home,	t= 6.000000,	Work time = 6.000000
 
 worker (1)
-	state : Home,	t= 6.000000,	Work time = 0.000000
+	state : Working,	t= 4.000000,	Work time = 5.000000
 
 workerfee (0)
 	s = 6.000000
@@ -134,12 +134,12 @@ Company:
 update n7:
 money = 1
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 7.000000,	Work time = 0.000000
+	state : Home,	t= 7.000000,	Work time = 7.000000
 
 worker (1)
-	state : Home,	t= 7.000000,	Work time = 0.000000
+	state : Working,	t= 5.000000,	Work time = 6.000000
 
 workerfee (0)
 	s = 7.000000
@@ -153,12 +153,12 @@ Company:
 update n8:
 money = 1
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 8.000000,	Work time = 0.000000
+	state : Home,	t= 8.000000,	Work time = 8.000000
 
 worker (1)
-	state : Home,	t= 8.000000,	Work time = 0.000000
+	state : Working,	t= 6.000000,	Work time = 7.000000
 
 workerfee (0)
 	s = 8.000000
@@ -172,12 +172,12 @@ Company:
 update n9:
 money = 1
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 9.000000,	Work time = 0.000000
+	state : Burnout,	t= 9.000000,	Work time = 9.000000
 
 worker (1)
-	state : Home,	t= 9.000000,	Work time = 0.000000
+	state : Working,	t= 7.000000,	Work time = 8.000000
 
 workerfee (0)
 	s = 9.000000
@@ -191,12 +191,12 @@ Company:
 update n10:
 money = 1
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 10.000000,	Work time = 0.000000
+	state : Burnout,	t= 10.000000,	Work time = 10.000000
 
 worker (1)
-	state : Home,	t= 10.000000,	Work time = 0.000000
+	state : Working,	t= 8.000000,	Work time = 9.000000
 
 workerfee (0)
 	s = 10.000000
@@ -210,12 +210,12 @@ Company:
 update n11:
 money = 0
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 11.000000,	Work time = 0.000000
+	state : Burnout,	t= 11.000000,	Work time = 11.000000
 
 worker (1)
-	state : Home,	t= 11.000000,	Work time = 0.000000
+	state : Working,	t= 9.000000,	Work time = 10.000000
 
 workerfee (0)
 	s = 1.000000
@@ -229,12 +229,12 @@ Company:
 update n12:
 money = 0
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 12.000000,	Work time = 0.000000
+	state : Burnout,	t= 12.000000,	Work time = 12.000000
 
 worker (1)
-	state : Home,	t= 12.000000,	Work time = 0.000000
+	state : Working,	t= 10.000000,	Work time = 11.000000
 
 workerfee (0)
 	s = 2.000000
@@ -248,12 +248,12 @@ Company:
 update n13:
 money = 0
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 13.000000,	Work time = 0.000000
+	state : Burnout,	t= 13.000000,	Work time = 13.000000
 
 worker (1)
-	state : Home,	t= 13.000000,	Work time = 0.000000
+	state : Working,	t= 11.000000,	Work time = 12.000000
 
 workerfee (0)
 	s = 3.000000
@@ -267,12 +267,12 @@ Company:
 update n14:
 money = 0
 budget = 1
-counter = 0
+counter = 1
 worker (0)
-	state : Home,	t= 14.000000,	Work time = 0.000000
+	state : Burnout,	t= 14.000000,	Work time = 14.000000
 
 worker (1)
-	state : Home,	t= 14.000000,	Work time = 0.000000
+	state : Working,	t= 12.000000,	Work time = 13.000000
 
 workerfee (0)
 	s = 4.000000
