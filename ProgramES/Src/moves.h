@@ -1,6 +1,6 @@
 #include "character.h"
 
-int takeTransition(Worker *w, char* edge);
+int takeTransition(Worker *w, char *edge);
 int rand_a_b(int a, int b);
 void Home(Worker *w);
 void Working(Worker *w);
