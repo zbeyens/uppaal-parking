@@ -1,4 +1,4 @@
-update n0:
+State System (0):
 money = 1
 budget = 1
 counter = 0
@@ -17,15 +17,15 @@ workerfee (1)
 Company:
 	state: StartUp
 
-update n1:
+State System (1):
 money = 1
 budget = 2
-counter = 0
+counter = 1
 worker (0)
 	state : Home,	t= 1.000000,	Work time = 1.000000
 
 worker (1)
-	state : Home,	t= 1.000000,	Work time = 1.000000
+	state : Outside,	t= 1.000000,	Work time = 1.000000
 
 workerfee (0)
 	s = 1.000000
@@ -36,7 +36,7 @@ workerfee (1)
 Company:
 	state: Working
 
-update n2:
+State System (2):
 money = 1
 budget = 2
 counter = 1
@@ -44,7 +44,7 @@ worker (0)
 	state : Home,	t= 2.000000,	Work time = 2.000000
 
 worker (1)
-	state : Outside,	t= 1.000000,	Work time = 1.000000
+	state : Working,	t= 1.000000,	Work time = 2.000000
 
 workerfee (0)
 	s = 2.000000
@@ -55,15 +55,15 @@ workerfee (1)
 Company:
 	state: Working
 
-update n3:
-money = 1
+State System (3):
+money = 2
 budget = 2
 counter = 1
 worker (0)
 	state : Home,	t= 3.000000,	Work time = 3.000000
 
 worker (1)
-	state : Working,	t= 1.000000,	Work time = 2.000000
+	state : Working,	t= 1.000000,	Work time = 3.000000
 
 workerfee (0)
 	s = 3.000000
@@ -74,15 +74,15 @@ workerfee (1)
 Company:
 	state: Working
 
-update n4:
-money = 2
+State System (4):
+money = 3
 budget = 2
 counter = 1
 worker (0)
 	state : Home,	t= 4.000000,	Work time = 4.000000
 
 worker (1)
-	state : Break,	t= 1.000000,	Work time = 3.000000
+	state : Working,	t= 1.000000,	Work time = 4.000000
 
 workerfee (0)
 	s = 4.000000
@@ -93,112 +93,112 @@ workerfee (1)
 Company:
 	state: Working
 
-update n5:
-money = 2
+State System (5):
+money = 4
 budget = 2
 counter = 1
 worker (0)
-	state : Home,	t= 5.000000,	Work time = 5.000000
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 5.000000
+
+workerfee (1)
+	s = 5.000000
+
+Company:
+	state: Working
+
+State System (6):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 6.000000
+
+workerfee (1)
+	s = 6.000000
+
+Company:
+	state: Working
+
+State System (7):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 7.000000
+
+workerfee (1)
+	s = 7.000000
+
+Company:
+	state: Working
+
+State System (8):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 4.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 8.000000
+
+workerfee (1)
+	s = 8.000000
+
+Company:
+	state: Working
+
+State System (9):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 9.000000
+
+workerfee (1)
+	s = 9.000000
+
+Company:
+	state: Working
+
+State System (10):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 6.000000
 
 worker (1)
 	state : Working,	t= 1.000000,	Work time = 4.000000
 
 workerfee (0)
-	s = 5.000000
-
-workerfee (1)
-	s = 5.000000
-
-Company:
-	state: Working
-
-update n6:
-money = 3
-budget = 2
-counter = 1
-worker (0)
-	state : Home,	t= 6.000000,	Work time = 6.000000
-
-worker (1)
-	state : Break,	t= 1.000000,	Work time = 5.000000
-
-workerfee (0)
-	s = 6.000000
-
-workerfee (1)
-	s = 6.000000
-
-Company:
-	state: Working
-
-update n7:
-money = 3
-budget = 2
-counter = 1
-worker (0)
-	state : Home,	t= 7.000000,	Work time = 7.000000
-
-worker (1)
-	state : Break,	t= 2.000000,	Work time = 6.000000
-
-workerfee (0)
-	s = 7.000000
-
-workerfee (1)
-	s = 7.000000
-
-Company:
-	state: Working
-
-update n8:
-money = 3
-budget = 2
-counter = 1
-worker (0)
-	state : Home,	t= 8.000000,	Work time = 8.000000
-
-worker (1)
-	state : Break,	t= 3.000000,	Work time = 7.000000
-
-workerfee (0)
-	s = 8.000000
-
-workerfee (1)
-	s = 8.000000
-
-Company:
-	state: Working
-
-update n9:
-money = 3
-budget = 2
-counter = 1
-worker (0)
-	state : Burnout,	t= 9.000000,	Work time = 9.000000
-
-worker (1)
-	state : Break,	t= 4.000000,	Work time = 8.000000
-
-workerfee (0)
-	s = 9.000000
-
-workerfee (1)
-	s = 9.000000
-
-Company:
-	state: Working
-
-update n10:
-money = 3
-budget = 2
-counter = 1
-worker (0)
-	state : Burnout,	t= 10.000000,	Work time = 10.000000
-
-worker (1)
-	state : Burnout,	t= 5.000000,	Work time = 9.000000
-
-workerfee (0)
 	s = 10.000000
 
 workerfee (1)
@@ -207,15 +207,15 @@ workerfee (1)
 Company:
 	state: Working
 
-update n11:
-money = 0
+State System (11):
+money = 3
 budget = 2
 counter = 1
 worker (0)
-	state : Burnout,	t= 11.000000,	Work time = 11.000000
+	state : Outside,	t= 1.000000,	Work time = 1.000000
 
 worker (1)
-	state : Burnout,	t= 6.000000,	Work time = 10.000000
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
 
 workerfee (0)
 	s = 1.000000
@@ -226,15 +226,15 @@ workerfee (1)
 Company:
 	state: Working
 
-update n12:
-money = 0
+State System (12):
+money = 3
 budget = 2
 counter = 1
 worker (0)
-	state : Burnout,	t= 12.000000,	Work time = 12.000000
+	state : Working,	t= 1.000000,	Work time = 2.000000
 
 worker (1)
-	state : Burnout,	t= 7.000000,	Work time = 11.000000
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
 
 workerfee (0)
 	s = 2.000000
@@ -243,17 +243,17 @@ workerfee (1)
 	s = 2.000000
 
 Company:
-	state: Bankrupt
+	state: Working
 
-update n13:
-money = 0
+State System (13):
+money = 4
 budget = 2
 counter = 1
 worker (0)
-	state : Burnout,	t= 13.000000,	Work time = 13.000000
+	state : Working,	t= 1.000000,	Work time = 3.000000
 
 worker (1)
-	state : Burnout,	t= 8.000000,	Work time = 12.000000
+	state : Home,	t= 1.000000,	Work time = 7.000000
 
 workerfee (0)
 	s = 3.000000
@@ -262,17 +262,17 @@ workerfee (1)
 	s = 3.000000
 
 Company:
-	state: Bankrupt
+	state: Working
 
-update n14:
-money = 0
+State System (14):
+money = 5
 budget = 2
 counter = 1
 worker (0)
-	state : Burnout,	t= 14.000000,	Work time = 14.000000
+	state : Sleep,	t= 1.000000,	Work time = 4.000000
 
 worker (1)
-	state : Burnout,	t= 9.000000,	Work time = 13.000000
+	state : Outside,	t= 1.000000,	Work time = 1.000000
 
 workerfee (0)
 	s = 4.000000
@@ -281,5 +281,1626 @@ workerfee (1)
 	s = 4.000000
 
 Company:
-	state: Bankrupt
+	state: Working
 
+State System (15):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 5.000000
+
+workerfee (1)
+	s = 5.000000
+
+Company:
+	state: Working
+
+State System (16):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 6.000000
+
+workerfee (1)
+	s = 6.000000
+
+Company:
+	state: Working
+
+State System (17):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 7.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 7.000000
+
+workerfee (1)
+	s = 7.000000
+
+Company:
+	state: Working
+
+State System (18):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 8.000000
+
+workerfee (1)
+	s = 8.000000
+
+Company:
+	state: Working
+
+State System (19):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 9.000000
+
+workerfee (1)
+	s = 9.000000
+
+Company:
+	state: Working
+
+State System (20):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Home,	t= 1.000000,	Work time = 7.000000
+
+workerfee (0)
+	s = 10.000000
+
+workerfee (1)
+	s = 10.000000
+
+Company:
+	state: Working
+
+State System (21):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 4.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 1.000000
+
+workerfee (1)
+	s = 1.000000
+
+Company:
+	state: Working
+
+State System (22):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 2.000000
+
+workerfee (1)
+	s = 2.000000
+
+Company:
+	state: Working
+
+State System (23):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 3.000000
+
+workerfee (1)
+	s = 3.000000
+
+Company:
+	state: Working
+
+State System (24):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 7.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 4.000000
+
+workerfee (1)
+	s = 4.000000
+
+Company:
+	state: Working
+
+State System (25):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 5.000000
+
+workerfee (1)
+	s = 5.000000
+
+Company:
+	state: Working
+
+State System (26):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 6.000000
+
+workerfee (1)
+	s = 6.000000
+
+Company:
+	state: Working
+
+State System (27):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Home,	t= 1.000000,	Work time = 7.000000
+
+workerfee (0)
+	s = 7.000000
+
+workerfee (1)
+	s = 7.000000
+
+Company:
+	state: Working
+
+State System (28):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 4.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 8.000000
+
+workerfee (1)
+	s = 8.000000
+
+Company:
+	state: Working
+
+State System (29):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 9.000000
+
+workerfee (1)
+	s = 9.000000
+
+Company:
+	state: Working
+
+State System (30):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 10.000000
+
+workerfee (1)
+	s = 10.000000
+
+Company:
+	state: Working
+
+State System (31):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 7.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 1.000000
+
+workerfee (1)
+	s = 1.000000
+
+Company:
+	state: Working
+
+State System (32):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 2.000000
+
+workerfee (1)
+	s = 2.000000
+
+Company:
+	state: Working
+
+State System (33):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 3.000000
+
+workerfee (1)
+	s = 3.000000
+
+Company:
+	state: Working
+
+State System (34):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 4.000000
+
+workerfee (1)
+	s = 4.000000
+
+Company:
+	state: Working
+
+State System (35):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 4.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 5.000000
+
+workerfee (1)
+	s = 5.000000
+
+Company:
+	state: Working
+
+State System (36):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 6.000000
+
+workerfee (1)
+	s = 6.000000
+
+Company:
+	state: Working
+
+State System (37):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 7.000000
+
+workerfee (1)
+	s = 7.000000
+
+Company:
+	state: Working
+
+State System (38):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 8.000000
+
+workerfee (1)
+	s = 8.000000
+
+Company:
+	state: Working
+
+State System (39):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 9.000000
+
+workerfee (1)
+	s = 9.000000
+
+Company:
+	state: Working
+
+State System (40):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Home,	t= 1.000000,	Work time = 7.000000
+
+workerfee (0)
+	s = 10.000000
+
+workerfee (1)
+	s = 10.000000
+
+Company:
+	state: Working
+
+State System (41):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 4.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 1.000000
+
+workerfee (1)
+	s = 1.000000
+
+Company:
+	state: Working
+
+State System (42):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 2.000000
+
+workerfee (1)
+	s = 2.000000
+
+Company:
+	state: Working
+
+State System (43):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 3.000000
+
+workerfee (1)
+	s = 3.000000
+
+Company:
+	state: Working
+
+State System (44):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 7.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 4.000000
+
+workerfee (1)
+	s = 4.000000
+
+Company:
+	state: Working
+
+State System (45):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 5.000000
+
+workerfee (1)
+	s = 5.000000
+
+Company:
+	state: Working
+
+State System (46):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 6.000000
+
+workerfee (1)
+	s = 6.000000
+
+Company:
+	state: Working
+
+State System (47):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Home,	t= 1.000000,	Work time = 7.000000
+
+workerfee (0)
+	s = 7.000000
+
+workerfee (1)
+	s = 7.000000
+
+Company:
+	state: Working
+
+State System (48):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 4.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 8.000000
+
+workerfee (1)
+	s = 8.000000
+
+Company:
+	state: Working
+
+State System (49):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 9.000000
+
+workerfee (1)
+	s = 9.000000
+
+Company:
+	state: Working
+
+State System (50):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 10.000000
+
+workerfee (1)
+	s = 10.000000
+
+Company:
+	state: Working
+
+State System (51):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 7.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 1.000000
+
+workerfee (1)
+	s = 1.000000
+
+Company:
+	state: Working
+
+State System (52):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 2.000000
+
+workerfee (1)
+	s = 2.000000
+
+Company:
+	state: Working
+
+State System (53):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 3.000000
+
+workerfee (1)
+	s = 3.000000
+
+Company:
+	state: Working
+
+State System (54):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 4.000000
+
+workerfee (1)
+	s = 4.000000
+
+Company:
+	state: Working
+
+State System (55):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 4.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 5.000000
+
+workerfee (1)
+	s = 5.000000
+
+Company:
+	state: Working
+
+State System (56):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 6.000000
+
+workerfee (1)
+	s = 6.000000
+
+Company:
+	state: Working
+
+State System (57):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 7.000000
+
+workerfee (1)
+	s = 7.000000
+
+Company:
+	state: Working
+
+State System (58):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 8.000000
+
+workerfee (1)
+	s = 8.000000
+
+Company:
+	state: Working
+
+State System (59):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 9.000000
+
+workerfee (1)
+	s = 9.000000
+
+Company:
+	state: Working
+
+State System (60):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Home,	t= 1.000000,	Work time = 7.000000
+
+workerfee (0)
+	s = 10.000000
+
+workerfee (1)
+	s = 10.000000
+
+Company:
+	state: Working
+
+State System (61):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 4.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 1.000000
+
+workerfee (1)
+	s = 1.000000
+
+Company:
+	state: Working
+
+State System (62):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 2.000000
+
+workerfee (1)
+	s = 2.000000
+
+Company:
+	state: Working
+
+State System (63):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 3.000000
+
+workerfee (1)
+	s = 3.000000
+
+Company:
+	state: Working
+
+State System (64):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 7.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 4.000000
+
+workerfee (1)
+	s = 4.000000
+
+Company:
+	state: Working
+
+State System (65):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 5.000000
+
+workerfee (1)
+	s = 5.000000
+
+Company:
+	state: Working
+
+State System (66):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 6.000000
+
+workerfee (1)
+	s = 6.000000
+
+Company:
+	state: Working
+
+State System (67):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Home,	t= 1.000000,	Work time = 7.000000
+
+workerfee (0)
+	s = 7.000000
+
+workerfee (1)
+	s = 7.000000
+
+Company:
+	state: Working
+
+State System (68):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 4.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 8.000000
+
+workerfee (1)
+	s = 8.000000
+
+Company:
+	state: Working
+
+State System (69):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 9.000000
+
+workerfee (1)
+	s = 9.000000
+
+Company:
+	state: Working
+
+State System (70):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 10.000000
+
+workerfee (1)
+	s = 10.000000
+
+Company:
+	state: Working
+
+State System (71):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 7.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 1.000000
+
+workerfee (1)
+	s = 1.000000
+
+Company:
+	state: Working
+
+State System (72):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 2.000000
+
+workerfee (1)
+	s = 2.000000
+
+Company:
+	state: Working
+
+State System (73):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 3.000000
+
+workerfee (1)
+	s = 3.000000
+
+Company:
+	state: Working
+
+State System (74):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 4.000000
+
+workerfee (1)
+	s = 4.000000
+
+Company:
+	state: Working
+
+State System (75):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 4.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 5.000000
+
+workerfee (1)
+	s = 5.000000
+
+Company:
+	state: Working
+
+State System (76):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 6.000000
+
+workerfee (1)
+	s = 6.000000
+
+Company:
+	state: Working
+
+State System (77):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 7.000000
+
+workerfee (1)
+	s = 7.000000
+
+Company:
+	state: Working
+
+State System (78):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 8.000000
+
+workerfee (1)
+	s = 8.000000
+
+Company:
+	state: Working
+
+State System (79):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 9.000000
+
+workerfee (1)
+	s = 9.000000
+
+Company:
+	state: Working
+
+State System (80):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Home,	t= 1.000000,	Work time = 7.000000
+
+workerfee (0)
+	s = 10.000000
+
+workerfee (1)
+	s = 10.000000
+
+Company:
+	state: Working
+
+State System (81):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 4.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 1.000000
+
+workerfee (1)
+	s = 1.000000
+
+Company:
+	state: Working
+
+State System (82):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 2.000000
+
+workerfee (1)
+	s = 2.000000
+
+Company:
+	state: Working
+
+State System (83):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 3.000000
+
+workerfee (1)
+	s = 3.000000
+
+Company:
+	state: Working
+
+State System (84):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 7.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 4.000000
+
+workerfee (1)
+	s = 4.000000
+
+Company:
+	state: Working
+
+State System (85):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 5.000000
+
+workerfee (1)
+	s = 5.000000
+
+Company:
+	state: Working
+
+State System (86):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 6.000000
+
+workerfee (1)
+	s = 6.000000
+
+Company:
+	state: Working
+
+State System (87):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Home,	t= 1.000000,	Work time = 7.000000
+
+workerfee (0)
+	s = 7.000000
+
+workerfee (1)
+	s = 7.000000
+
+Company:
+	state: Working
+
+State System (88):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 4.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 8.000000
+
+workerfee (1)
+	s = 8.000000
+
+Company:
+	state: Working
+
+State System (89):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 9.000000
+
+workerfee (1)
+	s = 9.000000
+
+Company:
+	state: Working
+
+State System (90):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 10.000000
+
+workerfee (1)
+	s = 10.000000
+
+Company:
+	state: Working
+
+State System (91):
+money = 3
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 7.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 1.000000
+
+workerfee (1)
+	s = 1.000000
+
+Company:
+	state: Working
+
+State System (92):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 2.000000
+
+workerfee (1)
+	s = 2.000000
+
+Company:
+	state: Working
+
+State System (93):
+money = 4
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 3.000000
+
+workerfee (1)
+	s = 3.000000
+
+Company:
+	state: Working
+
+State System (94):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 1.000000,	Work time = 3.000000
+
+worker (1)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+workerfee (0)
+	s = 4.000000
+
+workerfee (1)
+	s = 4.000000
+
+Company:
+	state: Working
+
+State System (95):
+money = 5
+budget = 2
+counter = 1
+worker (0)
+	state : Sleep,	t= 2.000000,	Work time = 4.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+workerfee (0)
+	s = 5.000000
+
+workerfee (1)
+	s = 5.000000
+
+Company:
+	state: Working
+
+State System (96):
+money = 6
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 1.000000,	Work time = 5.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 3.000000
+
+workerfee (0)
+	s = 6.000000
+
+workerfee (1)
+	s = 6.000000
+
+Company:
+	state: Working
+
+State System (97):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Home,	t= 2.000000,	Work time = 6.000000
+
+worker (1)
+	state : Working,	t= 1.000000,	Work time = 4.000000
+
+workerfee (0)
+	s = 7.000000
+
+workerfee (1)
+	s = 7.000000
+
+Company:
+	state: Working
+
+State System (98):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Outside,	t= 1.000000,	Work time = 1.000000
+
+worker (1)
+	state : Sleep,	t= 1.000000,	Work time = 5.000000
+
+workerfee (0)
+	s = 8.000000
+
+workerfee (1)
+	s = 8.000000
+
+Company:
+	state: Working
+
+State System (99):
+money = 7
+budget = 2
+counter = 1
+worker (0)
+	state : Working,	t= 1.000000,	Work time = 2.000000
+
+worker (1)
+	state : Sleep,	t= 2.000000,	Work time = 6.000000
+
+workerfee (0)
+	s = 9.000000
+
+workerfee (1)
+	s = 9.000000
+
+Company:
+	state: Working
+
+Walk: 0
+Bus: 0
+Car: 30
+rework worker0: 25.418060 
+rework worker1: 18.060201 
+number of modification: 299

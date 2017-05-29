@@ -24,8 +24,9 @@ int main() {
   initialization(workers, workerFees, company);
   int i =0;
   double step = 1;
-  while (i < 15) {
-	fprintf(fp,"update n%d:\n",i);
+  int f =0;
+  while (i < 100) {
+	fprintf(fp,"State System (%d):\n",i);
 	fprintf(fp,"money = %d\n",money);
 	fprintf(fp,"budget = %d\n", budget);
 	fprintf(fp,"counter = %d\n", counter);
@@ -42,18 +43,29 @@ int main() {
 	fprintf(fp,"workerfee (%d)\n", workerFees[1]->id);
 	fprintf(fp,"\ts = %f\n\n", workerFees[1]->s);
 	fprintf(fp,"Company:\n\tstate: %s\n\n", company->state);
-	int j = 0;
-	if (strategy(workers, workerFees, company) == 0) {
-		int a = rand_a_b(0,3);
-		//CompanyCase
-		companyCase(company);
-		//workerCase
-		workerCase1(workers,0);
-		workerCase1(workers,1);
-		//workerFeeCase
+	int environnement =1;
+	while (environnement != 0){
+		int i1 = workerCase1(workers,0);
+		int i2 = workerCase1(workers,1);
+		int i3 = companyCase(company);
 		workerFeeCase(workerFees);
-		
+		environnement = i1+i2+i3;
+		f++;
 	}
+	char* previous_state0 = workers[0]->state;
+	char* previous_state1 = workers[1]->state;
+	while (strategy(workers, workerFees, company) == 1) {
+		if (strcmp(previous_state0, "Break") && strcmp(workers[0]->state, "Working")){
+			rework += 1;
+			previous_state0 = workers[0]->state;
+		}
+		if (strcmp(previous_state1, "Break") && strcmp(workers[1]->state, "Working")){
+			rework1 += 1;
+			previous_state1 = workers[1]->state;
+		}
+		f++;
+	}
+	
 	workers[0]->t += step;
 	workers[1]->t += step;
 	workers[0]->t_work += step;
@@ -70,6 +82,13 @@ int main() {
 	free(workers);
 	free(workerFees);
 	free(company);
+	fprintf(fp, "Walk: %i\n", take_walk);
+	fprintf(fp, "Bus: %i\n", take_bus);
+	fprintf(fp, "Car: %i\n", take_car);
+	fprintf(fp, "rework worker0: %i %\n", rework);
+	fprintf(fp, "rework worker1: %i %\n", rework1);
+	fprintf(fp, "number of modification: %i\n", f);
+	
 	fclose(fp);
 	return 0;
 }
@@ -94,24 +113,29 @@ void initialization(Worker **workers, WorkerFee **workerFees,
   company->state = "StartUp";
 }
 
-void workerCase1(Worker **workers, int a){
+int workerCase1(Worker **workers, int a){
 	int i = 0;
+	int ans =0;
 	//int a = rand_a_b(0,2);
 	if (strcmp(workers[a]->state, "Home")==0 && i == 0) {
 		Home(workers[a]);
+		if (strcmp(workers[a]->state, "Home")!=0){ans = 1;}
 		i++;
 	}
 	if (strcmp(workers[a]->state,"Outside")==0 && i ==0){i++;}
 	if (strcmp(workers[a]->state, "Working")==0 && i == 0) {
 		Working(workers[a]);
+		if (strcmp(workers[a]->state, "Working")!=0){ans = 1;}
 		i++;
 	}
 	if (strcmp(workers[a]->state, "Break")==0 && i == 0) {
 		Break(workers[a]);
+		if (strcmp(workers[a]->state, "Break")!=0){ans = 1;}
 		i++;
 	}
 	if (strcmp(workers[a]->state, "Sleep")==0 && i == 0) {
 		sleep(workers[a]);
+		if (strcmp(workers[a]->state, "Sleep")!=0){ans = 1;}
 		i++;
     }
 	if (strcmp(workers[a]->state, "Burnout")==0 && i == 0) {
@@ -119,9 +143,7 @@ void workerCase1(Worker **workers, int a){
       i++;
     }
 		
-		
-		
-	
+	return ans;
 	
 }
 
@@ -198,24 +220,27 @@ void workerFeeCase(WorkerFee **workerFees) {
   Fee(workerFees[1]);
 }
 
-void companyCase(Company *company) {
+int companyCase(Company *company) {
   int i = 0;
+  int ans = 0;
   if (i == 0 && strcmp(company->state, "StartUp")==0) {
     StartUp(company);
+	if (strcmp(company->state, "StartUp")!=0){ans = 1;}
     i++;
   }
   if (i == 0 && strcmp(company->state, "Working")==0) {
     WorkingCompany(company);
+	if (strcmp(company->state, "Working")!=0){ans = 1;}
     i++;
   }
   if (i == 0 && strcmp(company->state, "Bankrupt")==0) {
     Bankrupt(company);
     i++;
   }
+  return ans;
 }
 
 int takeTransition(Worker *w, char *edge) {
-	printf("ok");
   int e1 = strcmp(
       edge, "counter<counter_max&&t_work<T_BURNOUT,t:=0,t_work:=0,counter+=1");
   int e2 = strcmp(edge, "t_work<T_BURNOUT,t:=0");
@@ -228,6 +253,16 @@ int takeTransition(Worker *w, char *edge) {
     w->t_work = 0;
     counter += 1;
   } else if (e2==0 || e3==0 || e4==0 || e5==0) {
+	  if (e3 ==0){
+		  take_car += 1;
+		  
+	  }
+	  else if (e4 ==0){
+		  take_bus += 1;
+	  }
+	  else if (e5==0){
+		  take_walk +=1;
+	  }
   }
 
   else if (e6==0) {
@@ -309,6 +344,7 @@ void giveMoney() {
     money = 0;
   }
 }
+
 int strategy(Worker **worker, WorkerFee **workerfee, Company *company){
 	/** Automatically generated**/
 

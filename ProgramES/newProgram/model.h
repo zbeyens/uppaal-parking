@@ -4,6 +4,11 @@
 #include <time.h>
 
 const int WORKERS = 2;
+int take_bus = 0;
+int take_walk = 0;
+int take_car = 0;
+int rework = 0;
+int rework1 = 0;
 
 const int MONEY_MAX = 7;
 int money = 1;
@@ -50,10 +55,10 @@ typedef struct _c {
 
 void set_max_var();
 void initialization(Worker **workers, WorkerFee **workerfees, Company *company);
-void companyCase(Company *company);
+int companyCase(Company *company);
 void workerFeeCase(WorkerFee **workerFees);
 void workerCase(Worker **workers);
-void workerCase1(Worker **workers, int a);
+int workerCase1(Worker **workers, int a);
 int strategy(Worker **worker, WorkerFee **workerfee, Company *company);
 int model();
 int takeTransition(Worker *w, char *edge);
