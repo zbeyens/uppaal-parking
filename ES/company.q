@@ -1,25 +1,25 @@
 //This file was generated from (Academic) UPPAAL 4.1.4 (rev. 5535), March 2014
 
 /*
-control: A[ (not exists (i:car_t) Car(i).Burnout) and Company.Working U money==10]
+A[] (not Company.Bankrupt ) and (not exists (i:worker_t) Worker(i).Burnout) 
 */
-//NO_QUERY
+A[] not deadlock
 
 /*
 control: A[] (not exists (i:car_t) Car(i).Burnout) and not Company.Bankrupt and rework==false
 */
-//NO_QUERY
+A[] (not Company.Bankrupt ) and (not exists (i:worker_t) Worker(i).Burnout) 
 
 /*
 control: A[] (not Company.Bankrupt) and (not exists (i:car_t) Car(i).Burnout) and neverRework
 
 */
-//NO_QUERY
+control: A[] (not Company.Bankrupt ) and (not exists (i:worker_t) Worker(i).Burnout) and neverCar
 
 /*
 
 */
-control: A[] (not Company.Bankrupt ) and (not exists (i:worker_t) Worker(i).Burnout) 
+//NO_QUERY
 
 /*
 (Company.Startup and (money == MIN_UPGRADE)) --> Company.Upgraded
