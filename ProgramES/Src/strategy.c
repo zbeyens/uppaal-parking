@@ -1,4 +1,4 @@
-#include "moves.h"
+#include "strategy.h"
 
 int strategy(Worker **worker, WorkerFee **workerfee, Company *company){
 	/** Automatically generated**/
