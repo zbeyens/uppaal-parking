@@ -14,7 +14,7 @@ A[] (not Company.Bankrupt ) and (not exists (i:worker_t) Worker(i).Burnout)
 control: A[] (not Company.Bankrupt) and (not exists (i:car_t) Car(i).Burnout) and neverRework
 
 */
-control: A[] (not Company.Bankrupt ) and (not exists (i:worker_t) Worker(i).Burnout) and neverCar
+control: A[] (not Company.Bankrupt ) and (not exists (i:worker_t) Worker(i).Burnout)
 
 /*
 
